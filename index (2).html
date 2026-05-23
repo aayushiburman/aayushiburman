@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayushi Burman | Creative Director · Makeup Artist · Photographer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--black:#0a0a0a;--white:#ffffff;--gray:#f4f4f4;--mid:#888;--border:#e0e0e0;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--black);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3rem;background:rgba(255,255,255,0.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);}
+.nav-logo{font-size:0.65rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--black);}
+.nav-links{display:flex;gap:2.2rem;list-style:none;}
+.nav-links a{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;color:var(--mid);font-weight:600;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--black);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--black);}
+
+/* PAGE SWITCHING */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ══════════════════════════════
+   HOME PAGE
+══════════════════════════════ */
+/* Split hero — text LEFT, image RIGHT, no overlap */
+.home-hero{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:60px;}
+.home-hero-left{background:var(--black);display:flex;flex-direction:column;justify-content:center;padding:4rem 3.5rem;}
+.home-hero-left .eyebrow{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--mid);margin-bottom:1.5rem;}
+.home-hero-left h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5.5vw,5.5rem);color:var(--white);line-height:1;margin-bottom:1.5rem;}
+.home-hero-left .tagline{font-size:0.78rem;line-height:1.9;color:#aaa;margin-bottom:2.5rem;max-width:340px;}
+.home-hero-left .creds{font-size:0.65rem;letter-spacing:0.04em;color:#555;border-left:2px solid #333;padding-left:1rem;line-height:2.2;}
+.home-hero-right{position:relative;overflow:hidden;}
+.home-hero-right img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%);}
+
+/* Skills strip */
+.skills-strip{background:var(--black);border-top:1px solid #222;display:flex;justify-content:center;gap:0;}
+.skill-item{padding:1.2rem 3rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#555;font-weight:600;border-right:1px solid #222;cursor:pointer;transition:color 0.2s;}
+.skill-item:hover{color:var(--white);}
+.skill-item:last-child{border-right:none;}
+
+/* About strip */
+.about-strip{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.about-left{padding:4rem 3.5rem;background:var(--white);}
+.about-left h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.5vw,3rem);margin-bottom:1.2rem;}
+.about-left p{font-size:0.82rem;line-height:1.9;color:#444;margin-bottom:1rem;}
+.about-right{background:var(--gray);padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center;gap:1.5rem;}
+.about-skill-block{border-left:2px solid var(--black);padding-left:1.2rem;}
+.about-skill-block h4{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;margin-bottom:0.3rem;}
+.about-skill-block p{font-size:0.75rem;color:var(--mid);line-height:1.7;}
+
+/* Portfolio preview */
+.portfolio-preview{padding:4rem 3rem;}
+.section-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2.5rem;}
+.section-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.5vw,3rem);}
+.section-header span{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);}
+.home-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.home-cat{position:relative;overflow:hidden;cursor:pointer;}
+.home-cat img{width:100%;height:52vw;max-height:500px;object-fit:cover;object-position:center top;transition:transform 0.7s ease;display:block;filter:grayscale(20%);}
+.home-cat:hover img{transform:scale(1.04);}
+.home-cat-label{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.5rem 1.5rem;background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);}
+.home-cat-label h3{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--white);letter-spacing:0.04em;}
+.home-cat-label p{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:0.2rem;}
+.home-cat a{position:absolute;inset:0;}
+
+/* Instagram section */
+.ig-section{background:var(--black);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+.ig-section p{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#555;}
+.ig-link{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--white);text-decoration:none;letter-spacing:0.05em;transition:color 0.2s;}
+.ig-link:hover{color:#aaa;}
+
+/* ══════════════════════════════
+   SHARED PAGE STYLES
+══════════════════════════════ */
+.page-header{background:var(--black);padding:7rem 3rem 3rem;margin-top:60px;}
+.page-header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,6rem);color:var(--white);line-height:1;}
+.page-header p{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-top:0.6rem;}
+.page-ig{background:var(--black);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;margin-top:1px;}
+.page-ig span{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#555;}
+.page-ig a{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#888;text-decoration:none;font-weight:600;}
+.page-ig a:hover{color:var(--white);}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 3rem;margin-top:0;}
+.tab-btn{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;font-family:'Montserrat',sans-serif;padding:1rem 1.5rem;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:var(--mid);transition:all 0.2s;margin-bottom:-1px;}
+.tab-btn.active{color:var(--black);border-bottom-color:var(--black);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* GALLERY GRID */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px 0 5rem;}
+.gallery-grid img{width:100%;height:320px;object-fit:cover;display:block;cursor:zoom-in;transition:opacity 0.2s;}
+.gallery-grid img:hover{opacity:0.85;}
+.gallery-grid .span2{grid-column:span 2;}
+.gallery-grid .span2 img{height:320px;}
+
+/* Section title inside page */
+.inner-title{padding:2rem 3rem 0.5rem;}
+.inner-title h2{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;}
+.inner-title p{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);margin-top:0.2rem;}
+
+/* add-image helper text */
+.add-note{text-align:center;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#bbb;padding:0.5rem 3rem 3rem;border-top:1px dashed #eee;margin-top:0.5rem;}
+
+/* ══════════════════════════════
+   ART DIRECTION
+══════════════════════════════ */
+.art-projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;padding:3px 0 0;}
+.art-thumb{position:relative;overflow:hidden;cursor:pointer;}
+.art-thumb img{width:100%;height:400px;object-fit:cover;display:block;transition:transform 0.7s ease;}
+.art-thumb:hover img{transform:scale(1.04);}
+.art-thumb-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;}
+.art-thumb:hover .art-thumb-overlay{background:rgba(0,0,0,0.35);}
+.art-thumb-label{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);}
+.art-thumb-label h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);}
+.art-thumb-label p{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:0.2rem;}
+.art-thumb a{position:absolute;inset:0;z-index:2;}
+
+/* ART PROJECT DETAIL */
+.project-detail{display:none;}
+.project-detail.active{display:block;}
+.project-header{background:var(--black);padding:7rem 3rem 3rem;margin-top:60px;}
+.project-header .back-btn{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#555;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:600;margin-bottom:1.5rem;display:block;padding:0;}
+.project-header .back-btn:hover{color:var(--white);}
+.project-header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,5rem);color:var(--white);line-height:1;}
+.project-header .subtitle{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-top:0.5rem;}
+.project-body{padding:3rem;}
+.project-body .description{max-width:700px;margin-bottom:2.5rem;}
+.project-body .description p{font-size:0.85rem;line-height:1.9;color:#444;margin-bottom:1rem;}
+.project-body .credits{font-size:0.68rem;letter-spacing:0.08em;color:var(--mid);line-height:2;border-left:2px solid var(--border);padding-left:1rem;margin-bottom:2.5rem;}
+.project-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
+.project-gallery img{width:100%;object-fit:cover;display:block;cursor:zoom-in;}
+.project-gallery img:hover{opacity:0.85;transition:opacity 0.2s;}
+.project-gallery .tall{height:480px;}
+.project-gallery .med{height:320px;}
+
+/* Film section */
+.film-band{background:#111;padding:3rem;margin-bottom:3px;}
+.film-band h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--white);margin-bottom:0.4rem;}
+.film-band p{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#555;margin-bottom:1.5rem;}
+.video-box{width:100%;max-width:800px;aspect-ratio:16/9;background:#000;display:flex;align-items:center;justify-content:center;}
+.video-box-inner{text-align:center;color:#333;}
+.video-box-inner svg{display:block;margin:0 auto 0.75rem;}
+.video-box-inner p{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;}
+/* ═══ REPLACE VIDEO: swap the .video-box div with:
+   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+═══ */
+
+/* ══════════════════════════════
+   STREET PHOTOGRAPHY
+══════════════════════════════ */
+.street-quote-block{text-align:center;padding:4rem 3rem 2rem;max-width:680px;margin:0 auto;}
+.street-quote-block blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2vw,1.25rem);line-height:1.8;color:var(--black);}
+.street-quote-block cite{display:block;margin-top:0.75rem;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;font-style:normal;font-family:'Montserrat',sans-serif;color:var(--mid);}
+.street-note{text-align:center;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#bbb;padding:0 3rem 1.5rem;}
+/* Street grid — 4 col with image titles */
+.street-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:0 0 5rem;}
+.street-item{position:relative;cursor:zoom-in;}
+.street-item img{width:100%;height:260px;object-fit:cover;display:block;transition:opacity 0.2s;}
+.street-item:hover img{opacity:0.85;}
+.street-item-caption{position:absolute;bottom:0;left:0;right:0;padding:0.6rem 0.75rem;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);}
+.street-item-caption span{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.8);font-weight:600;}
+
+/* ══════════════════════════════
+   SOCIAL MEDIA PAGE
+══════════════════════════════ */
+.sm-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.sm-intro-left{background:var(--black);padding:4rem 3.5rem;}
+.sm-intro-left h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:1.2rem;}
+.sm-intro-left p{font-size:0.8rem;line-height:1.9;color:#888;max-width:400px;}
+.sm-intro-right{background:var(--gray);padding:4rem 3.5rem;display:flex;flex-direction:column;gap:1.5rem;justify-content:center;}
+.sm-service{padding-left:1.2rem;border-left:2px solid var(--black);}
+.sm-service h4{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;margin-bottom:0.35rem;}
+.sm-service p{font-size:0.75rem;color:var(--mid);line-height:1.8;}
+
+/* SM tabs */
+.sm-tabs-section{padding:3rem 3rem 0;}
+.sm-tabs-section h2{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;margin-bottom:0.3rem;}
+.sm-tabs-section .sub{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:1.5rem;}
+.sm-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);}
+.sm-tab-btn{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;font-family:'Montserrat',sans-serif;padding:0.8rem 1.5rem;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:var(--mid);transition:all 0.2s;margin-bottom:-1px;}
+.sm-tab-btn.active{color:var(--black);border-bottom-color:var(--black);}
+.sm-tab-content{display:none;padding:2rem 3rem 5rem;}
+.sm-tab-content.active{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.sm-placeholder{aspect-ratio:1;background:var(--gray);border:1.5px dashed #ddd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;}
+.sm-placeholder .plus{font-size:2rem;color:#ccc;font-weight:200;}
+.sm-placeholder span{font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:#bbb;}
+
+/* ══════════════════════════════
+   CONTACT
+══════════════════════════════ */
+.contact-header{background:var(--black);padding:7rem 3rem 3rem;margin-top:60px;}
+.contact-header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,6rem);color:var(--white);}
+.contact-header p{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-top:0.5rem;}
+.contact-body{display:grid;grid-template-columns:1fr 1fr;gap:5rem;padding:4rem 3rem 6rem;}
+.contact-info p.intro{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;line-height:1.8;color:#333;margin-bottom:2rem;}
+.contact-links{display:flex;flex-direction:column;}
+.contact-link{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:var(--black);font-weight:600;padding:1.1rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;transition:color 0.2s;}
+.contact-link:hover{color:var(--mid);}
+.contact-form{display:flex;flex-direction:column;gap:1.1rem;}
+.contact-form input,.contact-form textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);padding:0.75rem 0;font-family:'Montserrat',sans-serif;font-size:0.82rem;color:var(--black);outline:none;resize:none;}
+.contact-form input:focus,.contact-form textarea:focus{border-bottom-color:var(--black);}
+.contact-form textarea{height:110px;}
+.btn-black{display:inline-block;padding:0.85rem 2.5rem;background:var(--black);color:var(--white);font-family:'Montserrat',sans-serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:opacity 0.2s;}
+.btn-black:hover{opacity:0.7;}
+
+/* FOOTER */
+footer{background:var(--black);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1a1a1a;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--white);letter-spacing:0.1em;}
+.footer-socials{display:flex;gap:2rem;}
+.footer-socials a{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:#555;font-weight:600;transition:color 0.2s;}
+.footer-socials a:hover{color:var(--white);}
+.footer-copy{font-size:0.58rem;color:#444;letter-spacing:0.1em;text-transform:uppercase;}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.96);align-items:center;justify-content:center;cursor:zoom-out;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;}
+.lightbox-close{position:fixed;top:1.5rem;right:2rem;background:none;border:none;color:var(--white);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;position:fixed;inset:0;background:var(--white);flex-direction:column;align-items:center;justify-content:center;gap:2rem;z-index:99;}
+  .nav-links.open{display:flex;}
+  .hamburger{display:flex;z-index:100;}
+  .home-hero{grid-template-columns:1fr;}
+  .home-hero-right{height:60vw;}
+  .home-hero-left{padding:2.5rem 1.5rem;}
+  .skills-strip{flex-wrap:wrap;}
+  .skill-item{padding:0.9rem 1.5rem;border-bottom:1px solid #222;}
+  .about-strip{grid-template-columns:1fr;}
+  .about-left,.about-right{padding:2.5rem 1.5rem;}
+  .portfolio-preview{padding:2.5rem 1.5rem;}
+  .home-cats{grid-template-columns:1fr;gap:3px;}
+  .home-cat img{height:70vw;max-height:380px;}
+  .ig-section{flex-direction:column;gap:0.75rem;text-align:center;padding:2rem 1.5rem;}
+  .page-header{padding:5rem 1.5rem 2rem;}
+  .tabs{padding:0 1rem;overflow-x:auto;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+  .gallery-grid .span2{grid-column:span 2;}
+  .art-projects-grid{grid-template-columns:1fr;}
+  .art-thumb img{height:280px;}
+  .project-body{padding:2rem 1.5rem;}
+  .project-gallery{grid-template-columns:1fr 1fr;}
+  .project-gallery .tall,.project-gallery .med{height:220px;}
+  .street-grid{grid-template-columns:1fr 1fr;}
+  .street-item img{height:200px;}
+  .sm-intro-grid{grid-template-columns:1fr;}
+  .sm-intro-left,.sm-intro-right{padding:2.5rem 1.5rem;}
+  .sm-tabs-section{padding:2rem 1.5rem 0;}
+  .sm-tab-content{padding:1.5rem 1.5rem 4rem;grid-template-columns:1fr 1fr;}
+  .contact-body{grid-template-columns:1fr;gap:2.5rem;padding:2.5rem 1.5rem 4rem;}
+  .contact-header{padding:5rem 1.5rem 2rem;}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem;}
+  .film-band{padding:2rem 1.5rem;}
+  .page-ig{padding:1.5rem;}
+  .inner-title{padding:1.5rem 1.5rem 0.5rem;}
+  .sm-tabs{overflow-x:auto;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo" onclick="showPage('home')">Beauty, Drama, & Direction</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="showPage('makeup')" id="nav-makeup">Makeup</a></li>
+    <li><a href="#" onclick="showPage('artdirection')" id="nav-artdirection">Art Direction</a></li>
+    <li><a href="#" onclick="showPage('photography')" id="nav-photography">Street Photography</a></li>
+    <li><a href="#" onclick="showPage('socialmedia')" id="nav-socialmedia">Social Media</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <!-- Split hero: text left on black, portrait right -->
+  <div class="home-hero">
+    <div class="home-hero-left">
+      <p class="eyebrow">Creative Director · Makeup Artist · Photographer · Content Strategist</p>
+      <h1>Ayushi<br>Burman</h1>
+      <p class="tagline">A creative practice that moves between makeup artistry, art direction, documentary photography, and social media strategy — each discipline informing the next.</p>
+      <div class="creds">
+        Professional Certification — AOFM London<br>
+        MA Creative Direction for Fashion & Beauty<br>
+        Solent University, UK
+      </div>
+    </div>
+    <div class="home-hero-right">
+      <!-- ═══ REPLACE IMAGE: swap the src below with your preferred hero portrait ═══ -->
+      <img src="https://static.wixstatic.com/media/f0550a_a5668145fde54ba28e6e34d608c29050~mv2.jpg/v1/fill/w_1800,h_1400,al_c/f0550a_a5668145fde54ba28e6e34d608c29050~mv2.jpg" alt="Ayushi Burman">
+    </div>
+  </div>
+
+  <!-- Skills strip -->
+  <div class="skills-strip">
+    <div class="skill-item" onclick="showPage('makeup')">Makeup Artistry</div>
+    <div class="skill-item" onclick="showPage('artdirection')">Art Direction</div>
+    <div class="skill-item" onclick="showPage('photography')">Photography</div>
+    <div class="skill-item" onclick="showPage('socialmedia')">Social Media Strategy</div>
+  </div>
+
+  <!-- About / philosophy -->
+  <div class="about-strip">
+    <div class="about-left">
+      <h2>The Practice</h2>
+      <p>Beauty is a lens, not a limit. Starting with professional makeup artistry — editorial, bridal, SFX — the work expanded naturally into directing the image itself: shaping the visual concept, the casting, the mood, the story behind the frame.</p>
+      <p>From there, an MA in Creative Direction at Solent University deepened the discipline. Now that same visual thinking is applied to social media: building brand identities and content strategies that are as intentional and considered as any photographic shoot.</p>
+    </div>
+    <div class="about-right">
+      <div class="about-skill-block">
+        <h4>Makeup Artistry</h4>
+        <p>Editorial, bridal, avant-garde, prosthetics & SFX. Certified by AOFM London.</p>
+      </div>
+      <div class="about-skill-block">
+        <h4>Creative Direction & Film</h4>
+        <p>Concept development, studio direction, photography and short film. MA level work.</p>
+      </div>
+      <div class="about-skill-block">
+        <h4>Street Photography</h4>
+        <p>Documentary and street photography — exploring identity, place, and human experience.</p>
+      </div>
+      <div class="about-skill-block">
+        <h4>Social Media Creative Strategy</h4>
+        <p>Content strategy, brand storytelling, and creative direction for social platforms.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio preview -->
+  <div class="portfolio-preview">
+    <div class="section-header">
+      <h2>Portfolio</h2>
+      <span>Select a discipline</span>
+    </div>
+    <div class="home-cats">
+      <div class="home-cat">
+        <!-- ═══ REPLACE IMAGE: Editorial cover image ═══ -->
+        <img src="https://static.wixstatic.com/media/f0550a_2370bc0eb7304ae2b29e052ef7b70db0~mv2.jpeg/v1/fill/w_900,h_1200,al_c/f0550a_2370bc0eb7304ae2b29e052ef7b70db0~mv2.jpeg" alt="Makeup">
+        <div class="home-cat-label"><h3>Makeup</h3><p>Editorial · Bridal · Prosthetics · SFX</p></div>
+        <a href="#" onclick="showPage('makeup');showMakeupTab('editorial')"></a>
+      </div>
+      <div class="home-cat">
+        <!-- ═══ REPLACE IMAGE: Art direction cover image ═══ -->
+        <img src="https://static.wixstatic.com/media/f0550a_f8d2df4ee0344573a66d01f466315225~mv2.jpg/v1/fill/w_900,h_1200,al_c/f0550a_f8d2df4ee0344573a66d01f466315225~mv2.jpg" alt="Art Direction">
+        <div class="home-cat-label"><h3>Art Direction</h3><p>Studio Direction · Film · Projects</p></div>
+        <a href="#" onclick="showPage('artdirection')"></a>
+      </div>
+      <div class="home-cat">
+        <!-- ═══ REPLACE IMAGE: Street photography cover image ═══ -->
+        <img src="https://static.wixstatic.com/media/f0550a_c4b38bec4cf64886b0babec74add27a5~mv2.jpg/v1/fill/w_900,h_1200,al_c/f0550a_c4b38bec4cf64886b0babec74add27a5~mv2.jpg" alt="Photography">
+        <div class="home-cat-label"><h3>Photography</h3><p>Street · Documentary · Portrait</p></div>
+        <a href="#" onclick="showPage('photography')"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instagram -->
+  <div class="ig-section">
+    <p>Follow the work</p>
+    <a href="https://www.instagram.com/makeupbyayushib/" target="_blank" class="ig-link">@makeupbyayushib ↗</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MAKEUP PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="page-makeup">
+  <div class="page-header">
+    <h1>Makeup</h1>
+    <p>Editorial · Fashion · Bridal · Party · Prosthetics · SFX</p>
+  </div>
+  <div class="page-ig">
+    <span>Makeup work on Instagram</span>
+    <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">@makeupbyayushib ↗</a>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-editorial" onclick="showMakeupTab('editorial')">Editorial & Fashion</button>
+    <button class="tab-btn" id="tab-bridal" onclick="showMakeupTab('bridal')">Bridal · Party</button>
+    <button class="tab-btn" id="tab-sfx" onclick="showMakeupTab('sfx')">Prosthetics & SFX</button>
+  </div>
+
+  <!-- EDITORIAL TAB — all images from your editorial page -->
+  <div class="tab-content active" id="content-editorial">
+    <div class="gallery-grid" style="padding:4px 0 5rem;">
+      <!-- ═══ EDITORIAL IMAGES — replace src with your downloaded files when ready ═══ -->
+      <div><img src="https://static.wixstatic.com/media/f0550a_4becc3e249f342529063d7427268d8d9~mv2.jpg/v1/fill/w_900,h_900,fp_0.41_0.41,q_90/f0550a_4becc3e249f342529063d7427268d8d9~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_ee928867fccd4fddbe389ad576436af3~mv2.jpg/v1/fill/w_900,h_900,fp_0.44_0.31,q_90/f0550a_ee928867fccd4fddbe389ad576436af3~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_a8f3f63bf58b4d85bddd2abe3c5d6906~mv2.jpg/v1/fill/w_900,h_900,fp_0.4_0.33,q_90/f0550a_a8f3f63bf58b4d85bddd2abe3c5d6906~mv2.jpg" onclick="lb(this.src)"></div>
+      <div class="span2"><img src="https://static.wixstatic.com/media/f0550a_8d8b1788e1d449b6a3438d1464a8a4e2~mv2.jpg/v1/fill/w_1800,h_640,fp_0.47_0.33,q_90/f0550a_8d8b1788e1d449b6a3438d1464a8a4e2~mv2.jpg" onclick="lb(this.src)" style="height:320px;object-fit:cover;width:100%;display:block;cursor:zoom-in;"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_f39ee2299eec4a239343d07f3c1d671d~mv2.jpeg/v1/fill/w_900,h_900,fp_0.61_0.24,q_90/f0550a_f39ee2299eec4a239343d07f3c1d671d~mv2.jpeg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_b8d4754a5f33478bb9a2ee2868e76bff~mv2.jpg/v1/fill/w_900,h_900,fp_0.5_0.44,q_90/f0550a_b8d4754a5f33478bb9a2ee2868e76bff~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_913811d1509149759316b902a35d228a~mv2.jpg/v1/fill/w_900,h_900,fp_0.58_0.39,q_90/f0550a_913811d1509149759316b902a35d228a~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_be039ccfe1964a4eb422d94ce84364d0~mv2.jpg/v1/fill/w_900,h_900,fp_0.51_0.19,q_90/f0550a_be039ccfe1964a4eb422d94ce84364d0~mv2.jpg" onclick="lb(this.src)"></div>
+      <div class="span2"><img src="https://static.wixstatic.com/media/f0550a_ec48701d9d5845a6b91c892467ec477b~mv2.jpeg/v1/fill/w_1800,h_640,fp_0.45_0.38,q_90/f0550a_ec48701d9d5845a6b91c892467ec477b~mv2.jpeg" onclick="lb(this.src)" style="height:320px;object-fit:cover;width:100%;display:block;cursor:zoom-in;"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_1de8ad4e6f22484aa9edc7ddc523a683~mv2.jpg/v1/fill/w_900,h_900,fp_0.49_0.28,q_90/f0550a_1de8ad4e6f22484aa9edc7ddc523a683~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_960c0a53e9684c48b0479abb8e7f0d03~mv2.jpg/v1/fill/w_900,h_900,fp_0.5_0.34,q_90/f0550a_960c0a53e9684c48b0479abb8e7f0d03~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_6afcefabe1e4498c98e284c0b53af087~mv2.jpeg/v1/fill/w_900,h_900,fp_0.55_0.37,q_90/f0550a_6afcefabe1e4498c98e284c0b53af087~mv2.jpeg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_7cf4b7837ab64e29b31dbbb453b27a85~mv2.jpg/v1/fill/w_900,h_900,fp_0.45_0.49,q_90/f0550a_7cf4b7837ab64e29b31dbbb453b27a85~mv2.jpg" onclick="lb(this.src)"></div>
+      <div class="span2"><img src="https://static.wixstatic.com/media/f0550a_f2da4739891f4ee6b6332f464421f940~mv2.jpg/v1/fill/w_1800,h_640,fp_0.6_0.48,q_90/f0550a_f2da4739891f4ee6b6332f464421f940~mv2.jpg" onclick="lb(this.src)" style="height:320px;object-fit:cover;width:100%;display:block;cursor:zoom-in;"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_2048b32025f64922bb93913b8cdcfb8e~mv2.jpg/v1/fill/w_900,h_900,fp_0.45_0.29,q_90/f0550a_2048b32025f64922bb93913b8cdcfb8e~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_8766812b658e492d9058e20edb40a51d~mv2.jpg/v1/fill/w_900,h_900,fp_0.52_0.48,q_90/f0550a_8766812b658e492d9058e20edb40a51d~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_c7af0f807c944af2911b8205913e1dca~mv2.jpg/v1/fill/w_900,h_900,fp_0.29_0.31,q_90/f0550a_c7af0f807c944af2911b8205913e1dca~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_8a25b8a57e044a7aadb05da1bbd32c99~mv2.jpg/v1/fill/w_900,h_900,fp_0.54_0.27,q_90/f0550a_8a25b8a57e044a7aadb05da1bbd32c99~mv2.jpg" onclick="lb(this.src)"></div>
+      <div class="span2"><img src="https://static.wixstatic.com/media/f0550a_57b6ec9aaa7d4877ba4c1080b743567d~mv2.jpg/v1/fill/w_1800,h_640,fp_0.46_0.38,q_90/f0550a_57b6ec9aaa7d4877ba4c1080b743567d~mv2.jpg" onclick="lb(this.src)" style="height:320px;object-fit:cover;width:100%;display:block;cursor:zoom-in;"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_aac9e815bdba4f2981738f2173f15b7c~mv2.png/v1/fill/w_900,h_900,fp_0.45_0.42,q_90/f0550a_aac9e815bdba4f2981738f2173f15b7c~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_5286f23c421a436980471a5b3ab459b2~mv2.png/v1/fill/w_900,h_900,fp_0.53_0.5,q_90/f0550a_5286f23c421a436980471a5b3ab459b2~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_b1f6c26b9f794bab9885d04ee7c20cd1~mv2.jpg/v1/fill/w_900,h_900,fp_0.48_0.25,q_90/f0550a_b1f6c26b9f794bab9885d04ee7c20cd1~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_682d8f8ecd0c470497b29a185a3a2c45~mv2.jpg/v1/fill/w_900,h_900,fp_0.44_0.34,q_90/f0550a_682d8f8ecd0c470497b29a185a3a2c45~mv2.jpg" onclick="lb(this.src)"></div>
+      <div class="span2"><img src="https://static.wixstatic.com/media/f0550a_148f76dda8ee4a929c7fe9e7942ecdab~mv2.jpg/v1/fill/w_1800,h_640,fp_0.46_0.47,q_90/f0550a_148f76dda8ee4a929c7fe9e7942ecdab~mv2.jpg" onclick="lb(this.src)" style="height:320px;object-fit:cover;width:100%;display:block;cursor:zoom-in;"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_23bd053b00034d86a048ac8b1343c182~mv2.jpg/v1/fit/w_900,h_1350,q_90/f0550a_23bd053b00034d86a048ac8b1343c182~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_9b546db78fc44f898db842593933c2f6~mv2.jpg/v1/fill/w_900,h_900,fp_0.61_0.24,q_90/f0550a_9b546db78fc44f898db842593933c2f6~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_a7191de5a4e0470ba70f67cdc38923fd~mv2.jpg/v1/fill/w_900,h_900,al_c,q_90/f0550a_a7191de5a4e0470ba70f67cdc38923fd~mv2.jpg" onclick="lb(this.src)"></div>
+    </div>
+    <p class="add-note">← To add more images: open index.html in Notepad, find "EDITORIAL IMAGES", copy any &lt;div&gt;&lt;img src="YOUR_IMAGE_URL"&gt;&lt;/div&gt; line and paste a new one with your image URL →</p>
+  </div>
+
+  <!-- BRIDAL TAB — correct images from indian-makeup page -->
+  <div class="tab-content" id="content-bridal">
+    <div class="inner-title"><h2>Bridal · Party Makeup</h2></div>
+    <div class="gallery-grid" style="padding:1rem 0 5rem;">
+      <!-- ═══ BRIDAL IMAGES — all from your /indian-makeup page ═══ -->
+      <div class="span2"><img src="https://static.wixstatic.com/media/f0550a_c97fa1e616a5435da0597022deff704d~mv2.jpg/v1/fit/w_1800,h_639,q_90/f0550a_c97fa1e616a5435da0597022deff704d~mv2.jpg" onclick="lb(this.src)" style="height:320px;object-fit:cover;width:100%;display:block;cursor:zoom-in;"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_fbb0d84a4a064b41b755846da7d3dc82~mv2.jpg/v1/fit/w_960,h_639,q_90/f0550a_fbb0d84a4a064b41b755846da7d3dc82~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_52bad63394b946ec8ab0fb005e01721d~mv2.jpg/v1/fit/w_480,h_854,q_90/f0550a_52bad63394b946ec8ab0fb005e01721d~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_e063f303a9e9491290ea808d8f52e575~mv2.jpg/v1/fit/w_480,h_854,q_90/f0550a_e063f303a9e9491290ea808d8f52e575~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_938acf7f97574211bf70a5f4afb36a1f~mv2.jpg/v1/fit/w_480,h_853,q_90/f0550a_938acf7f97574211bf70a5f4afb36a1f~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_1adca4b0579e48b1b69d791f520b33e2~mv2.jpg/v1/fit/w_480,h_721,q_90/f0550a_1adca4b0579e48b1b69d791f520b33e2~mv2.jpg" onclick="lb(this.src)"></div>
+      <div class="span2"><img src="https://static.wixstatic.com/media/f0550a_7696b8bfe55f49e086b9b0f79a4b80c4~mv2.jpg/v1/fit/w_1800,h_640,q_90/f0550a_7696b8bfe55f49e086b9b0f79a4b80c4~mv2.jpg" onclick="lb(this.src)" style="height:320px;object-fit:cover;width:100%;display:block;cursor:zoom-in;"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_d168bea9a0d946b89996736d6cc2eae2~mv2.jpg/v1/fit/w_960,h_640,q_90/f0550a_d168bea9a0d946b89996736d6cc2eae2~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_2a265564e7bb47a29b81fe5befd0514d~mv2.jpg/v1/fit/w_480,h_722,q_90/f0550a_2a265564e7bb47a29b81fe5befd0514d~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_d699a0143b204c4eab86f04dae71d9a6~mv2.jpg/v1/fit/w_480,h_320,q_90/f0550a_d699a0143b204c4eab86f04dae71d9a6~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_b7b0e714f31443c9b39bf4dc96d003a2~mv2.png/v1/fit/w_480,h_1040,q_90/f0550a_b7b0e714f31443c9b39bf4dc96d003a2~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_ec3622cfc0d54df59c87f3a1a8df3ac2~mv2.jpg/v1/fit/w_480,h_321,q_90/f0550a_ec3622cfc0d54df59c87f3a1a8df3ac2~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_43cd17915d1e4972bd2135242424f4ee~mv2.jpg/v1/fit/w_480,h_720,q_90/f0550a_43cd17915d1e4972bd2135242424f4ee~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_61858d616f5e405d9319c7884eff1a08~mv2.jpg/v1/fit/w_480,h_319,q_90/f0550a_61858d616f5e405d9319c7884eff1a08~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_0cbc227e9ae442db878e2c568d4dc39c~mv2.jpg/v1/fit/w_480,h_320,q_90/f0550a_0cbc227e9ae442db878e2c568d4dc39c~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_0b885fcae9af4061883dcb22740f30e2~mv2.jpg/v1/fit/w_480,h_320,q_90/f0550a_0b885fcae9af4061883dcb22740f30e2~mv2.jpg" onclick="lb(this.src)"></div>
+      <div class="span2"><img src="https://static.wixstatic.com/media/f0550a_1f91a28fe0b540cc8d92566690f6f847~mv2.jpg/v1/fit/w_1800,h_641,q_90/f0550a_1f91a28fe0b540cc8d92566690f6f847~mv2.jpg" onclick="lb(this.src)" style="height:320px;object-fit:cover;width:100%;display:block;cursor:zoom-in;"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_2f20f8250a044d6c94d50157ebc7140b~mv2.jpeg/v1/fit/w_960,h_636,q_90/f0550a_2f20f8250a044d6c94d50157ebc7140b~mv2.jpeg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_ddf6855f632c4659881a9eab1a4c9fa2~mv2.jpeg/v1/fit/w_960,h_636,q_90/f0550a_ddf6855f632c4659881a9eab1a4c9fa2~mv2.jpeg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_39dbbcda332944b197c2d6e87425564b~mv2.jpeg/v1/fit/w_480,h_321,q_90/f0550a_39dbbcda332944b197c2d6e87425564b~mv2.jpeg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_d9b98a24ef6b4875abbc73926a4cb10c~mv2.jpeg/v1/fit/w_480,h_321,q_90/f0550a_d9b98a24ef6b4875abbc73926a4cb10c~mv2.jpeg" onclick="lb(this.src)"></div>
+      <div class="span2"><img src="https://static.wixstatic.com/media/f0550a_afca85b621114a6b8bfbaa3a262e5fe7~mv2.jpg/v1/fit/w_1800,h_640,q_90/f0550a_afca85b621114a6b8bfbaa3a262e5fe7~mv2.jpg" onclick="lb(this.src)" style="height:320px;object-fit:cover;width:100%;display:block;cursor:zoom-in;"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_1f8f2b3d631243ca81dae17b89115c7c~mv2.jpg/v1/fit/w_480,h_321,q_90/f0550a_1f8f2b3d631243ca81dae17b89115c7c~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_842802b3f21e473293072315201d0356~mv2.jpg/v1/fit/w_480,h_722,q_90/f0550a_842802b3f21e473293072315201d0356~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_794314ea6aa647ddb7782c259dca4333~mv2.jpg/v1/fit/w_480,h_719,q_90/f0550a_794314ea6aa647ddb7782c259dca4333~mv2.jpg" onclick="lb(this.src)"></div>
+    </div>
+    <p class="add-note">← To add more bridal images: find "BRIDAL IMAGES" in this file and paste a new &lt;div&gt;&lt;img src="YOUR_IMAGE_URL"&gt;&lt;/div&gt; line →</p>
+  </div>
+
+  <!-- SFX TAB — correct images from sfx-makeup page -->
+  <div class="tab-content" id="content-sfx">
+    <div class="inner-title"><h2>Prosthetics & SFX</h2></div>
+    <div class="gallery-grid" style="padding:1rem 0 5rem;">
+      <!-- ═══ SFX IMAGES — all from your /sfx-makeup page ═══ -->
+      <div><img src="https://static.wixstatic.com/media/f0550a_876a2334cd5c469f833ae8615d31532f~mv2.jpg/v1/fill/w_900,h_900,fp_0.55_0.38,q_90/f0550a_876a2334cd5c469f833ae8615d31532f~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_779920cb71bb49dcac101188a1797a1ef003.jpg/v1/fit/w_900,h_900,q_90/f0550a_779920cb71bb49dcac101188a1797a1ef003.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_287713877b614ed4add48299550e0dde~mv2.jpg/v1/fit/w_900,h_900,q_90/f0550a_287713877b614ed4add48299550e0dde~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_bac27f65738b4655962760a8bc40a7d6~mv2.jpg/v1/fit/w_900,h_900,q_90/f0550a_bac27f65738b4655962760a8bc40a7d6~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_591cb1054ff14860832fbe97ad15e847~mv2.jpg/v1/fit/w_900,h_900,q_90/f0550a_591cb1054ff14860832fbe97ad15e847~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_b49b1648882648138c9483123c7c7329~mv2.png/v1/fill/w_900,h_900,fp_0.41_0.49,q_90/f0550a_b49b1648882648138c9483123c7c7329~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_cc40d84e95544e50acb3547f5d782027~mv2.png/v1/fill/w_900,h_900,fp_0.45_0.52,q_90/f0550a_cc40d84e95544e50acb3547f5d782027~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_1f4ee8fc991846fea0c8088819eedc2c~mv2.jpg/v1/fit/w_900,h_900,q_90/f0550a_1f4ee8fc991846fea0c8088819eedc2c~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_3720d49c73b940888864124451a1973c~mv2.jpg/v1/fill/w_900,h_900,fp_0.31_0.32,q_90/f0550a_3720d49c73b940888864124451a1973c~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_0b07bf9e2acf4fcd8778c2cd83c53693~mv2.png/v1/fill/w_900,h_900,fp_0.47_0.41,q_90/f0550a_0b07bf9e2acf4fcd8778c2cd83c53693~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_d7e708548ee244d0a36f278d088927fc~mv2.png/v1/fill/w_900,h_900,fp_0.51_0.39,q_90/f0550a_d7e708548ee244d0a36f278d088927fc~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_d0d9a0d296ee420cb348dff12ae92924~mv2.png/v1/fill/w_900,h_900,fp_0.5_0.34,q_90/f0550a_d0d9a0d296ee420cb348dff12ae92924~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_c4a820862ed74698858a6eb3db388e2e~mv2.jpg/v1/fill/w_900,h_900,fp_0.51_0.33,q_90/f0550a_c4a820862ed74698858a6eb3db388e2e~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_9d322966fe1149368b5f40a9f87502f1~mv2.jpg/v1/fill/w_900,h_900,fp_0.47_0.49,q_90/f0550a_9d322966fe1149368b5f40a9f87502f1~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_e9607a533ce24a42bff560d0e511721a~mv2.png/v1/fill/w_900,h_900,fp_0.47_0.55,q_90/f0550a_e9607a533ce24a42bff560d0e511721a~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_68b28767941c470488f606a9a50ecf1c~mv2.jpg/v1/fill/w_900,h_900,fp_0.52_0.42,q_90/f0550a_68b28767941c470488f606a9a50ecf1c~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_89b00052352142679ad8c6a0fce9b488~mv2.png/v1/fill/w_900,h_900,fp_0.45_0.5,q_90/f0550a_89b00052352142679ad8c6a0fce9b488~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_d2741160be084f70833757a9eb8b13c6~mv2.png/v1/fit/w_900,h_900,q_90/f0550a_d2741160be084f70833757a9eb8b13c6~mv2.png" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_32ec2a3e69924a94b99476eef1c14389~mv2.jpg/v1/fit/w_900,h_900,q_90/f0550a_32ec2a3e69924a94b99476eef1c14389~mv2.jpg" onclick="lb(this.src)"></div>
+      <div><img src="https://static.wixstatic.com/media/f0550a_c052b4005c4f441b8c4ff896cfad2516~mv2.jpg/v1/fill/w_900,h_900,fp_0.36_0.42,q_90/f0550a_c052b4005c4f441b8c4ff896cfad2516~mv2.jpg" onclick="lb(this.src)"></div>
+    </div>
+    <p class="add-note">← To add more SFX images: find "SFX IMAGES" in this file and paste a new &lt;div&gt;&lt;img src="YOUR_IMAGE_URL"&gt;&lt;/div&gt; line →</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     ART DIRECTION — overview + 5 project detail pages
+═══════════════════════════════════════ -->
+<div class="page" id="page-artdirection">
+
+  <!-- ART DIRECTION OVERVIEW -->
+  <div class="project-detail active" id="art-overview">
+    <div class="page-header">
+      <h1>Art Direction<br>& Films</h1>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.95rem;letter-spacing:0;text-transform:none;color:#666;margin-top:0.8rem;">"A space where you can call me crazy, I don't mind it."</p>
+    </div>
+    <div class="page-ig">
+      <span>Art direction work on Instagram</span>
+      <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">@makeupbyayushib ↗</a>
+    </div>
+
+    <!-- Film section -->
+    <div class="film-band">
+      <h2>A Walk With Windows</h2>
+      <p>Short Film · Art Direction & Creative Direction</p>
+      <div class="video-box">
+        <div class="video-box-inner">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#333" stroke="none"/></svg>
+          <p>Paste your YouTube embed here</p>
+          <p style="margin-top:0.3rem;color:#222;">Replace this div with: &lt;iframe src="https://www.youtube.com/embed/YOUR_ID" ...&gt;</p>
+        </div>
+      </div>
+      <a href="https://005adcf2-5f93-4ec9-a1cc-97f8b3933042.filesusr.com/ugd/f0550a_1e6dae3aae7448548246ff29c62f7558.pdf" target="_blank" style="display:inline-block;margin-top:1.5rem;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:#666;text-decoration:none;border-bottom:1px solid #444;padding-bottom:2px;">View Film Summary PDF ↗</a>
+    </div>
+
+    <!-- 5 project thumbnails -->
+    <div style="padding:2rem 3rem 0.5rem;"><p style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);font-weight:600;">Studio Direction & Photography Projects</p></div>
+    <div class="art-projects-grid">
+      <div class="art-thumb">
+        <!-- ═══ REPLACE IMAGE: O Womaniya cover ═══ -->
+        <img src="https://static.wixstatic.com/media/f0550a_54e591687573408f9879d016811febd8~mv2.jpg/v1/fill/w_900,h_675,q_90/f0550a_54e591687573408f9879d016811febd8~mv2.jpg">
+        <div class="art-thumb-overlay"></div>
+        <div class="art-thumb-label"><h3>O Womaniya!</h3><p>Editorial Series</p></div>
+        <a href="#" onclick="showProject('womaniya')"></a>
+      </div>
+      <div class="art-thumb">
+        <!-- ═══ REPLACE IMAGE: The Gender Stage cover ═══ -->
+        <img src="https://static.wixstatic.com/media/f0550a_ed3181dfa4004e9697703ea57a18e969~mv2.jpg/v1/fill/w_900,h_675,q_90/f0550a_ed3181dfa4004e9697703ea57a18e969~mv2.jpg">
+        <div class="art-thumb-overlay"></div>
+        <div class="art-thumb-label"><h3>The Gender Stage</h3><p>Editorial Series</p></div>
+        <a href="#" onclick="showProject('genderstage')"></a>
+      </div>
+      <div class="art-thumb">
+        <!-- ═══ REPLACE IMAGE: They/Them cover ═══ -->
+        <img src="https://static.wixstatic.com/media/f0550a_a7191de5a4e0470ba70f67cdc38923fd~mv2.jpg/v1/fill/w_900,h_675,q_90/f0550a_a7191de5a4e0470ba70f67cdc38923fd~mv2.jpg">
+        <div class="art-thumb-overlay"></div>
+        <div class="art-thumb-label"><h3>He / She / They / Them?</h3><p>A project on the Third Gender</p></div>
+        <a href="#" onclick="showProject('theythem')"></a>
+      </div>
+      <div class="art-thumb">
+        <!-- ═══ REPLACE IMAGE: Confusion cover ═══ -->
+        <img src="https://static.wixstatic.com/media/f0550a_8c8552101d0d44de886caa752f0cec95~mv2.jpg/v1/fill/w_900,h_675,q_90/f0550a_8c8552101d0d44de886caa752f0cec95~mv2.jpg">
+        <div class="art-thumb-overlay"></div>
+        <div class="art-thumb-label"><h3>Confusion</h3><p>A Mind's Misery</p></div>
+        <a href="#" onclick="showProject('confusion')"></a>
+      </div>
+      <div class="art-thumb" style="grid-column:span 2;">
+        <!-- ═══ REPLACE IMAGE: Let Me Be cover ═══ -->
+        <img src="https://static.wixstatic.com/media/f0550a_c26a70c1f9b94262b082ec66e588f9b7~mv2.jpg/v1/fill/w_1800,h_675,q_90/f0550a_c26a70c1f9b94262b082ec66e588f9b7~mv2.jpg" style="height:400px;object-fit:cover;object-position:center top;">
+        <div class="art-thumb-overlay"></div>
+        <div class="art-thumb-label"><h3>Let Me Be!</h3><p>Self-love & Empowerment</p></div>
+        <a href="#" onclick="showProject('letmebe')"></a>
+      </div>
+    </div>
+    <div style="padding-bottom:5rem;"></div>
+  </div>
+
+  <!-- PROJECT: O WOMANIYA -->
+  <div class="project-detail" id="art-womaniya">
+    <div class="project-header">
+      <button class="back-btn" onclick="showProject('overview')">← Back to Art Direction</button>
+      <h1>O Womaniya!</h1>
+      <p class="subtitle">Editorial Series</p>
+    </div>
+    <div class="project-body">
+      <div class="project-gallery">
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_7f5f4df94d2a4424a1db078530c7baae~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_7f5f4df94d2a4424a1db078530c7baae~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_c588a829f20d4da9abaeca273d7c87a2~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_c588a829f20d4da9abaeca273d7c87a2~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_170c4113ff224e26877305d20fabb3b7~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_170c4113ff224e26877305d20fabb3b7~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_b9728683bbb449a9865c077cb753b98e~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_b9728683bbb449a9865c077cb753b98e~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_131c33ba7294450abd76e8c2bcc6bf97~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_131c33ba7294450abd76e8c2bcc6bf97~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_54e591687573408f9879d016811febd8~mv2.jpg/v1/fit/w_900,h_721,q_90/f0550a_54e591687573408f9879d016811febd8~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_4de08d3b37274985a6274b88f72aaab6~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_4de08d3b37274985a6274b88f72aaab6~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_25ed8c788af54f808259d0d8cb65007b~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_25ed8c788af54f808259d0d8cb65007b~mv2.jpg" onclick="lb(this.src)"></div>
+      </div>
+    </div>
+    <div class="page-ig" style="margin-top:3rem;">
+      <span>See more on Instagram</span>
+      <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">@makeupbyayushib ↗</a>
+    </div>
+  </div>
+
+  <!-- PROJECT: THE GENDER STAGE -->
+  <div class="project-detail" id="art-genderstage">
+    <div class="project-header">
+      <button class="back-btn" onclick="showProject('overview')">← Back to Art Direction</button>
+      <h1>The Gender Stage</h1>
+      <p class="subtitle">Editorial Series</p>
+    </div>
+    <div class="project-body">
+      <div class="description">
+        <p>This editorial series was inspired by meeting people who would identify as someone other than male or female and understanding by time how gender is something more performative than being a fix set of rules. As humans, we learn through every stage of our lives and as the mind grows we tend to shape into our best selves, digging deeper and deeper within. Seeing gender as a stage and us as being performers, being who we truly want is the main theme of this shoot.</p>
+      </div>
+      <div class="credits">
+        Model — Kolby<br>
+        Photographer — Georgie Birdsall<br>
+        Direction — Ayushi Burman<br>
+        MUA — Laura Caitlin
+      </div>
+      <div class="project-gallery">
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_a36c5f3e57b345c498c0164e52461972~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_a36c5f3e57b345c498c0164e52461972~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_0cba156713ea4c02b699370afa5e19c0~mv2.jpg/v1/fit/w_900,h_1440,q_90/f0550a_0cba156713ea4c02b699370afa5e19c0~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_ff546100cb7b4f2da256908eeca4aa19~mv2.jpg/v1/fit/w_900,h_1440,q_90/f0550a_ff546100cb7b4f2da256908eeca4aa19~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_3bfa64e78ee74750964de01b88cda540~mv2.jpg/v1/fit/w_900,h_1707,q_90/f0550a_3bfa64e78ee74750964de01b88cda540~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_aab9a6c8e9e1403bb810305f5cb81482~mv2.jpg/v1/fit/w_900,h_1440,q_90/f0550a_aab9a6c8e9e1403bb810305f5cb81482~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_9c5c5077fe7b4bb7bd83b0747976108d~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_9c5c5077fe7b4bb7bd83b0747976108d~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_42bf286a9ddb4b87bfcf1a0f3621135e~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_42bf286a9ddb4b87bfcf1a0f3621135e~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_ad7860b09dd642629566ef8cb810f468~mv2.jpg/v1/fit/w_900,h_1707,q_90/f0550a_ad7860b09dd642629566ef8cb810f468~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_c1e871cade364826a682f6f4dd4ee370~mv2.jpg/v1/fit/w_900,h_1440,q_90/f0550a_c1e871cade364826a682f6f4dd4ee370~mv2.jpg" onclick="lb(this.src)"></div>
+      </div>
+    </div>
+    <div class="page-ig" style="margin-top:3rem;">
+      <span>See more on Instagram</span>
+      <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">@makeupbyayushib ↗</a>
+    </div>
+  </div>
+
+  <!-- PROJECT: HE/SHE/THEY/THEM -->
+  <div class="project-detail" id="art-theythem">
+    <div class="project-header">
+      <button class="back-btn" onclick="showProject('overview')">← Back to Art Direction</button>
+      <h1>He / She / Or<br>They / Them?</h1>
+      <p class="subtitle">A project on what they call a "Third Gender"</p>
+    </div>
+    <div class="project-body">
+      <div class="description">
+        <p>While Western civilizations have only lately explored genders other than male and female, the Hijra community in India has been known in history for almost 4,000 years and is described in ancient literature as a testament to the importance of sexual variety in Indian culture, which is widely ignored nowadays.</p>
+        <p>People who identify as transgender are still fighting for their rights in our society as a result of society's refusal to recognize their gender identities. As a result, prejudice, social injustice, and physical assault continue to plague them.</p>
+      </div>
+      <div class="credits">
+        Model — Tamoghno<br>
+        Photographer — Bishnu Goenka<br>
+        Direction — Ayushi Burman & Nuaman Kabir<br>
+        MUA — Ayushi Burman
+      </div>
+      <div class="project-gallery">
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_a7191de5a4e0470ba70f67cdc38923fd~mv2.jpg/v1/fill/w_900,h_1350,q_90/f0550a_a7191de5a4e0470ba70f67cdc38923fd~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_2ced4eaa9f8b40fba947d5173b56708d~mv2.jpg/v1/fill/w_900,h_1350,q_90/f0550a_2ced4eaa9f8b40fba947d5173b56708d~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_c5d8f080c32b427a8041d13d6b322b41~mv2.jpg/v1/fill/w_900,h_1350,q_90/f0550a_c5d8f080c32b427a8041d13d6b322b41~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_a3f3453744b344a99a5175defe988398~mv2.jpg/v1/fill/w_900,h_1350,q_90/f0550a_a3f3453744b344a99a5175defe988398~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_f73029c57abc4e1a972a835e525871b2~mv2.jpg/v1/fill/w_900,h_1350,q_90/f0550a_f73029c57abc4e1a972a835e525871b2~mv2.jpg" onclick="lb(this.src)"></div>
+      </div>
+    </div>
+    <div class="page-ig" style="margin-top:3rem;">
+      <span>See more on Instagram</span>
+      <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">@makeupbyayushib ↗</a>
+    </div>
+  </div>
+
+  <!-- PROJECT: CONFUSION -->
+  <div class="project-detail" id="art-confusion">
+    <div class="project-header">
+      <button class="back-btn" onclick="showProject('overview')">← Back to Art Direction</button>
+      <h1>Confusion</h1>
+      <p class="subtitle">A Mind's Misery</p>
+    </div>
+    <div class="project-body">
+      <div class="description">
+        <p>No one talks about it proudly. The anxiety and the fear in one's mind to decide absolutely anything! Not everyone has been given the power to think about both sides of a coin for every single situation. But should we even call this a power?</p>
+        <p>When we can see both perspectives clearly like two different colors, say it Black or White and you find pros and cons of both — which one would you end up choosing?</p>
+      </div>
+      <div class="credits">
+        Model — Naima<br>
+        Photographer — Daniela Simoes<br>
+        Direction — Ayushi Burman<br>
+        MUA — Hadiyah Imran
+      </div>
+      <div class="project-gallery">
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_9b4dc8e410ab4a0e85af5c0b1c165a3f~mv2.jpg/v1/fit/w_900,h_1431,q_90/f0550a_9b4dc8e410ab4a0e85af5c0b1c165a3f~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_7c3e5040df934fc6b74e59a3b44b26c9~mv2.jpg/v1/fit/w_900,h_1439,q_90/f0550a_7c3e5040df934fc6b74e59a3b44b26c9~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_4060910becce48ddba8bc46e6aa77d4c~mv2.jpg/v1/fit/w_900,h_1442,q_90/f0550a_4060910becce48ddba8bc46e6aa77d4c~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_561cc4317213419faccfa6e222cd84e9~mv2.jpg/v1/fit/w_900,h_1420,q_90/f0550a_561cc4317213419faccfa6e222cd84e9~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_a5a912c4223d482799efd40fcb716dd2~mv2.jpg/v1/fit/w_900,h_1428,q_90/f0550a_a5a912c4223d482799efd40fcb716dd2~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_97bc53a535ee471485d710230eda64c8~mv2.jpg/v1/fit/w_900,h_1442,q_90/f0550a_97bc53a535ee471485d710230eda64c8~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_be73cc97cf5a451884809285ab63d2b2~mv2.jpg/v1/fit/w_900,h_1438,q_90/f0550a_be73cc97cf5a451884809285ab63d2b2~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_7bf35972b0f440428e68600c88375080~mv2.png/v1/fit/w_900,h_1201,q_90/f0550a_7bf35972b0f440428e68600c88375080~mv2.png" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_8c8552101d0d44de886caa752f0cec95~mv2.jpg/v1/fill/w_900,h_1350,q_90/f0550a_8c8552101d0d44de886caa752f0cec95~mv2.jpg" onclick="lb(this.src)"></div>
+      </div>
+    </div>
+    <div class="page-ig" style="margin-top:3rem;">
+      <span>See more on Instagram</span>
+      <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">@makeupbyayushib ↗</a>
+    </div>
+  </div>
+
+  <!-- PROJECT: LET ME BE -->
+  <div class="project-detail" id="art-letmebe">
+    <div class="project-header">
+      <button class="back-btn" onclick="showProject('overview')">← Back to Art Direction</button>
+      <h1>Let Me Be!</h1>
+      <p class="subtitle">Self-love & Empowerment</p>
+    </div>
+    <div class="project-body">
+      <div class="description">
+        <p>Being judgemental is one of the worst things humans can do. It not only brings down someone's confidence but can change the way how someone chooses to live their entire life. This project focuses on finding true love and empowerment within oneself and against all the voices in the head that tells you that you are not enough!</p>
+      </div>
+      <div class="credits">
+        Model — Peircey<br>
+        Photographer — Georgie Birdsall<br>
+        Direction — Ayushi Burman<br>
+        MUA — Hadiyah Imran
+      </div>
+      <div class="project-gallery">
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_762ef530769a486e8fbab983cf6e0a29~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_762ef530769a486e8fbab983cf6e0a29~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_e91142b62bb24356a24688974a6be2e2~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_e91142b62bb24356a24688974a6be2e2~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_d97a9c8cf4194a529c0547a36bf39c77~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_d97a9c8cf4194a529c0547a36bf39c77~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_c2cefa36ef914c6286bbdef06891cb6c~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_c2cefa36ef914c6286bbdef06891cb6c~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_be26435cff6644fd876383dc7809cf2a~mv2.jpg/v1/fit/w_900,h_1280,q_90/f0550a_be26435cff6644fd876383dc7809cf2a~mv2.jpg" onclick="lb(this.src)"></div>
+        <div><img class="tall" src="https://static.wixstatic.com/media/f0550a_68238fb352824ea69f76d109c151f110~mv2.png/v1/fit/w_900,h_1350,q_90/f0550a_68238fb352824ea69f76d109c151f110~mv2.png" onclick="lb(this.src)"></div>
+      </div>
+    </div>
+    <div class="page-ig" style="margin-top:3rem;">
+      <span>See more on Instagram</span>
+      <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">@makeupbyayushib ↗</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════
+     STREET PHOTOGRAPHY — correct images with captions
+═══════════════════════════════════════ -->
+<div class="page" id="page-photography">
+  <div class="page-header">
+    <h1>Street<br>Photography</h1>
+  </div>
+  <div class="page-ig">
+    <span>Photography on Instagram</span>
+    <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">@makeupbyayushib ↗</a>
+  </div>
+  <div class="street-quote-block">
+    <blockquote>"It was on that walk that I understood 'We move through these places with an avoidant eye and an avoidant heart'"</blockquote>
+    <cite>— Enam Gbewonyo</cite>
+  </div>
+  <p class="street-note">Please click on images to see full view</p>
+  <!-- ═══ STREET IMAGES — all correct images with captions from your site ═══ -->
+  <div class="street-grid">
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_c4b38bec4cf64886b0babec74add27a5~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_c4b38bec4cf64886b0babec74add27a5~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Deprived</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_c699e526264e4274ac54f90b300c26e6~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_c699e526264e4274ac54f90b300c26e6~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Abandoned</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_25384dd5b3d14bc6a7a92bb1691bb841~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_25384dd5b3d14bc6a7a92bb1691bb841~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Passion</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_d1d635811d314550896531381c47cad9~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_d1d635811d314550896531381c47cad9~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>I'm watching you</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_3e4ffcfb81dd4da4aaf2564c3af08124~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_3e4ffcfb81dd4da4aaf2564c3af08124~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Personal</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_89f4629da9c94fd18ccfcb2c8b4ca842~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_89f4629da9c94fd18ccfcb2c8b4ca842~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Almost there</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_4f7d7ed010f04cdf805c574e7f8010d1~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_4f7d7ed010f04cdf805c574e7f8010d1~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Anticipation</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_1b67d05349114b9694a4ed48710587c9~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_1b67d05349114b9694a4ed48710587c9~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Focus</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_048701b844e9424cb4bd642394681645~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_048701b844e9424cb4bd642394681645~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Hope</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_0a0a02a70f144c97ba1261b3aaf8c1c7~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_0a0a02a70f144c97ba1261b3aaf8c1c7~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Patience</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_c16d93bd6ea1442aa430690146c5c6c9~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_c16d93bd6ea1442aa430690146c5c6c9~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Tattered</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_5d1d2ad5eb2c441bb4eb8eb6b12cd4a8~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_5d1d2ad5eb2c441bb4eb8eb6b12cd4a8~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Opportunity</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_631fe63c89174d7e9e1f0becd2b86736~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_631fe63c89174d7e9e1f0becd2b86736~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span></span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_7927f039ab4b4696bb7b0c12cbd287cd~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_7927f039ab4b4696bb7b0c12cbd287cd~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Empty inside</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_2376eefb35ed4c3d99a8e735abcf0be2~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_2376eefb35ed4c3d99a8e735abcf0be2~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Control</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_9cf47827ae78499e9790408de851d414~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_9cf47827ae78499e9790408de851d414~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Everything except life partners</span></div></div>
+    <div class="street-item"><img src="https://static.wixstatic.com/media/f0550a_e9dd5d60b67f4174a75bcb2d6b41e19a~mv2.jpg/v1/fit/w_480,h_480,q_75/f0550a_e9dd5d60b67f4174a75bcb2d6b41e19a~mv2.jpg" onclick="lb(this.src)"><div class="street-item-caption"><span>Dreams</span></div></div>
+  </div>
+  <p class="add-note">← To add more street photos: find "STREET IMAGES" in this file and copy a street-item block with your new image URL and caption →</p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SOCIAL MEDIA PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="page-socialmedia">
+  <div class="page-header">
+    <h1>Social Media<br>Creative Strategy</h1>
+    <p>Content Strategy · Brand Storytelling · Creative Direction</p>
+  </div>
+  <div class="page-ig">
+    <span>Social media work on Instagram</span>
+    <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">@makeupbyayushib ↗</a>
+  </div>
+
+  <div class="sm-intro-grid">
+    <div class="sm-intro-left">
+      <h2>Where strategy meets visual storytelling</h2>
+      <p>A creative practice built on art direction, beauty, and visual storytelling — applied to social media. Every feed and campaign is approached as a creative project with intention behind every frame.</p>
+    </div>
+    <div class="sm-intro-right">
+      <div class="sm-service"><h4>Content Strategy</h4><p>Content pillars, editorial calendars, and strategic direction across Instagram, TikTok, and YouTube.</p></div>
+      <div class="sm-service"><h4>Creative Direction for Social</h4><p>Art directing shoots and content specifically built for social — knowing what stops the scroll and builds a brand.</p></div>
+      <div class="sm-service"><h4>Brand Storytelling</h4><p>Translating brand values into visual language. Cohesive aesthetics, tone of voice, and campaign concepts.</p></div>
+    </div>
+  </div>
+
+  <div class="sm-tabs-section">
+    <h2>Selected Work</h2>
+    <p class="sub">Add your campaigns, content grids and case studies below</p>
+    <div class="sm-tabs">
+      <button class="sm-tab-btn active" id="smtab-campaigns" onclick="showSmTab('campaigns')">Campaigns</button>
+      <button class="sm-tab-btn" id="smtab-strategy" onclick="showSmTab('strategy')">Strategy & Decks</button>
+      <button class="sm-tab-btn" id="smtab-grids" onclick="showSmTab('grids')">Content Grids</button>
+    </div>
+  </div>
+  <!-- ═══ SOCIAL MEDIA WORK: replace placeholders with your actual work images or PDFs ═══ -->
+  <div class="sm-tab-content active" id="smcontent-campaigns">
+    <div class="sm-placeholder"><span class="plus">+</span><span>Campaign 1</span></div>
+    <div class="sm-placeholder"><span class="plus">+</span><span>Campaign 2</span></div>
+    <div class="sm-placeholder"><span class="plus">+</span><span>Campaign 3</span></div>
+  </div>
+  <div class="sm-tab-content" id="smcontent-strategy">
+    <div class="sm-placeholder"><span class="plus">+</span><span>Strategy Deck</span></div>
+    <div class="sm-placeholder"><span class="plus">+</span><span>Case Study</span></div>
+    <div class="sm-placeholder"><span class="plus">+</span><span>Analytics Report</span></div>
+  </div>
+  <div class="sm-tab-content" id="smcontent-grids">
+    <div class="sm-placeholder"><span class="plus">+</span><span>Brand Grid</span></div>
+    <div class="sm-placeholder"><span class="plus">+</span><span>Content Calendar</span></div>
+    <div class="sm-placeholder"><span class="plus">+</span><span>Feed Mockup</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-header">
+    <h1>Get in Touch</h1>
+    <p>Open to Collaborations · Commissions · Creative Projects</p>
+  </div>
+  <div class="contact-body">
+    <div class="contact-info">
+      <p class="intro">Available for makeup artistry, creative direction, photography & social media strategy — based in Kolkata, open to projects internationally.</p>
+      <div class="contact-links">
+        <a href="https://www.instagram.com/makeupbyayushib/" target="_blank" class="contact-link"><span>Instagram</span><span>@makeupbyayushib ↗</span></a>
+        <a href="https://www.linkedin.com/in/ayushi-burman-5a3153b0/" target="_blank" class="contact-link"><span>LinkedIn</span><span>Ayushi Burman ↗</span></a>
+        <a href="https://www.youtube.com/channel/UCc-ZpJUNMNmvKcVpcJeFwNA" target="_blank" class="contact-link"><span>YouTube</span><span>View Channel ↗</span></a>
+        <a href="https://vm.tiktok.com/ZSd9fNVkf/" target="_blank" class="contact-link"><span>TikTok</span><span>View Profile ↗</span></a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Subject">
+      <textarea placeholder="Tell me about your project..."></textarea>
+      <button class="btn-black">Send Message</button>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLb()">
+  <button class="lightbox-close" onclick="closeLb()">✕ Close</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<footer>
+  <div class="footer-logo">MakeupbyAB</div>
+  <div class="footer-socials">
+    <a href="https://www.instagram.com/makeupbyayushib/" target="_blank">Instagram</a>
+    <a href="https://www.linkedin.com/in/ayushi-burman-5a3153b0/" target="_blank">LinkedIn</a>
+    <a href="https://www.youtube.com/channel/UCc-ZpJUNMNmvKcVpcJeFwNA" target="_blank">YouTube</a>
+    <a href="https://vm.tiktok.com/ZSd9fNVkf/" target="_blank">TikTok</a>
+  </div>
+  <p class="footer-copy">© 2026 Ayushi Burman</p>
+</footer>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  closeMenu();
+  // reset art direction to overview when navigating to it
+  if(id==='artdirection') showProject('overview');
+}
+function showMakeupTab(name){
+  ['editorial','bridal','sfx'].forEach(n=>{
+    document.getElementById('content-'+n).classList.toggle('active',n===name);
+    document.getElementById('tab-'+n).classList.toggle('active',n===name);
+  });
+}
+function showProject(name){
+  document.querySelectorAll('.project-detail').forEach(p=>p.classList.remove('active'));
+  document.getElementById('art-'+name).classList.add('active');
+  window.scrollTo(0,0);
+}
+function showSmTab(name){
+  ['campaigns','strategy','grids'].forEach(n=>{
+    document.getElementById('smcontent-'+n).classList.toggle('active',n===name);
+    document.getElementById('smtab-'+n).classList.toggle('active',n===name);
+  });
+}
+function lb(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+function closeLb(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+function closeMenu(){document.getElementById('navLinks').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+</script>
+</body>
+</html>
